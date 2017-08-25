@@ -49,6 +49,11 @@ or IPv4."
 DESCRITPION_${PN}-rdnssd       = "Daemon to autoconfigure the list of DNS \
 servers through slateless IPv6 autoconfiguration."
 
+# We do not run perl during the build, but only use it on the target.
+do_configure_prepend() {
+    export PERL="/usr/bin/perl"
+}
+
 do_install_append () {
     rm -rf ${D}${localstatedir}
     # Enable SUID bit for applications that need it
